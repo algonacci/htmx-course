@@ -1,0 +1,12 @@
+<div x-data="{ requesting: false }">
+    <button x-show="!requesting" @click="requesting = true" id="request" hx-get="http://127.0.0.1:8000"
+        hx-indicator="#progress">
+        Fire Request
+    </button>
+
+    <button x-show="requesting" @click="requesting = false" onclick="htmx.trigger('#request', 'htmx:abort')">
+        Cancel Request
+    </button>
+
+    <p id="progress" class="htmx-indicator spinner" x-show="requesting"></p>
+</div>

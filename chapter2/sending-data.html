@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sending Data</title>
+    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+    <script>
+        const getHobby = () => {
+            return "Learn"
+        }
+    </script>
+</head>
+
+<body>
+
+    <form>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter your email">
+        <br>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter your password">
+        <br>
+        <button hx-post="http://127.0.0.1:8000/login" hx-target="#response">
+            Submit
+        </button>
+    </form>
+
+    <br>
+
+    <button hx-post="http://127.0.0.1:8000/post" hx-target="#response"
+        hx-vals='js:{"name": "Eric", "hobby": getHobby()}'>
+        Submit
+    </button>
+
+    <div id="response">
+    </div>
+
+
+</body>
+
+</html>

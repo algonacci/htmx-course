@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polling Content</title>
+    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+</head>
+
+<body>
+
+    <div hx-get="http://127.0.0.1:8000" hx-target="#response" hx-trigger="every 5s" hx-swap="beforeend">
+        Get content every 5 seconds
+    </div>
+
+    <div id="response"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX</title>
+    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <style>
+        .spinner {
+            width: 40px;
+            height: 40px;
+            margin: 100px auto;
+            position: relative;
+            text-align: center;
+            -webkit-animation: rotate 2s linear infinite;
+            animation: rotate 2s linear infinite;
+        }
+
+        @-webkit-keyframes rotate {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotate {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        .spinner:before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-top-color: #007bff;
+            -webkit-animation: spin 1.5s ease-in-out infinite;
+            animation: spin 1.5s ease-in-out infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="request" hx-get="http://127.0.0.1:8000" hx-indicator="#progress">
+        Fire Request
+    </button>
+
+    <button onclick="htmx.trigger('#request', 'htmx:abort')">
+        Cancel Request
+    </button>
+
+    <p id="progress" class="htmx-indicator spinner"></p>
+
+
+
+    <!-- <div x-data="{ requesting: false }">
+        <button x-bind:hidden="requesting" @click="requesting = true" id="request" hx-get="http://127.0.0.1:8000"
+            hx-indicator="#progress">
+            Fire Request
+        </button>
+
+        <button x-bind:hidden="!requesting" @click="requesting = false"
+            onclick="htmx.trigger('#request', 'htmx:abort')">
+            Cancel Request
+        </button>
+
+        <p id="progress" class="htmx-indicator spinner" x-bind:hidden="!requesting"></p>
+    </div> -->
+
+
+</body>
+
+</html>
