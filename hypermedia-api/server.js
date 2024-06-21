@@ -52,6 +52,32 @@ app.post("/upload", upload.single("file"), async (req, res) => {
   res.send(`<b>Upload Succesful: </b> ${filePath}`);
 });
 
+app.post("/oob", async (req, res) => {
+  res.send(`
+    <div>
+      <h3 id="target2" hx-swap-oob="true">Hello World!</h3>
+      This goes to the main target
+    </div>
+    `);
+});
+
+app.post("/oob_swap", async (req, res) => {
+  res.send(`
+    <div>
+      <h3 id="target2">Hello World!</h3>
+      This goes to the main target
+    </div>
+    `);
+});
+
+app.get("/big_box", (req, res) => {
+  res.send(`
+    <div id="growing-box" class="grow" style="height: 300px; width: 300px; background-color: blue;">
+        Big Box
+    </div>
+    `);
+});
+
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {

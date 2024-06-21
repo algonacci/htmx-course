@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX</title>
+    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+    <style>
+        .grow {
+            transition: all 1s ease-in;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="growing-box" class="grow" style="height: 100px; width: 100px; background-color: red;"
+        hx-get="http://127.0.0.1:8000/big_box" hx-swap="outerHTML">
+        Small Box
+    </div>
+</body>
+
+</html>
