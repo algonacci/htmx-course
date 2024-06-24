@@ -71,11 +71,27 @@ app.post("/oob_swap", async (req, res) => {
 });
 
 app.get("/big_box", (req, res) => {
+  const size = req.query.size;
+
+  // Determine the size of the box based on the query parameter
+  let boxSize, newSize;
+  if (size === "big") {
+    boxSize = "300px";
+    color = "blue";
+    newSize = "small";
+  } else {
+    boxSize = "100px";
+    color = "red";
+    newSize = "big";
+  }
+
+  // Send the HTML response
   res.send(`
-    <div id="growing-box" class="grow" style="height: 300px; width: 300px; background-color: blue;">
-        Big Box
+    <div id="growing-box" class="grow" style="height: ${boxSize}; width: ${boxSize}; background-color: ${color};"
+         hx-get="http://127.0.0.1:8000/big_box?size=${newSize}" hx-swap="outerHTML" hx-trigger="click">
+        ${size === "big" ? "Big Box" : "Small Box"}
     </div>
-    `);
+  `);
 });
 
 const PORT = process.env.PORT || 8000;
