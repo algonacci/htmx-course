@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX</title>
+    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+    <script>
+        htmx.on("htmx:beforeSwap", (e) => {
+            console.log("Before swap")
+        })
+        htmx.on("htmx:afterSwap", (e) => {
+            console.log("After swap")
+        })
+    </script>
+</head>
+
+<body>
+    <button hx-post="http://127.0.0.1:8000/message" hx-target="#destination">
+        Load Stuff
+    </button>
+
+    <div id="destination"></div>
+</body>
+
+</html>

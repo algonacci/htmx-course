@@ -94,6 +94,23 @@ app.get("/big_box", (req, res) => {
   `);
 });
 
+app.get("/users", (req, res) => {
+  res.json([
+    {
+      id: 1,
+      name: "Eric Julianto",
+    },
+    {
+      id: 2,
+      name: "Denis Setiawan",
+    },
+    {
+      id: 3,
+      name: "Abadi Suryo",
+    },
+  ]);
+});
+
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX</title>
+    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+</head>
+
+<body>
+    <h1>User List</h1>
+
+    <!-- Container for displaying users -->
+    <ul id="user-list">
+        <!-- User items will be dynamically added here -->
+    </ul>
+
+    <!-- <script>
+        let users;
+        document.body.addEventListener("htmx:load", (e) => {
+            console.log(e)
+            fetch("http://127.0.0.1:8000/users")
+                .then(response => response.json())
+                .then(fetchedUsers => {
+                    console.log(fetchedUsers)
+                    users = fetchedUsers
+                })
+        })
+    </script> -->
+    <script>
+        htmx.onLoad((target) => {
+            fetch("http://127.0.0.1:8000/users")
+                .then(response => response.json())
+                .then(fetchedUsers => {
+                    // Select the ul element to append user items
+                    const userList = document.getElementById('user-list');
+
+                    // Loop through fetchedUsers and create li elements for each user
+                    fetchedUsers.forEach(user => {
+                        const li = document.createElement('li');
+                        li.textContent = `ID: ${user.id}, Name: ${user.name}`;
+                        userList.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching users:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>
