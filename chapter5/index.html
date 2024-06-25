@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX Websocket</title>
+    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+</head>
+
+<body>
+    <div hx-ws="connect:ws://127.0.0.1:5001">
+        <div id="chat_box">
+
+        </div>
+        <form hx-ws="send">
+            <input type="text" name="chat_message">
+            <br>
+            <button type="submit">Send </button>
+        </form>
+    </div>
+</body>
+
+</html>
